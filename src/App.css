@@ -1,0 +1,222 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #001a4d 0%, #003D8F 50%, #001a4d 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  color: #ffffff;
+  padding: 1.5rem 1rem;
+}
+
+/* Header */
+.header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.header-logos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 0.75rem;
+}
+
+.logo-text {
+  font-size: 1.1rem;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.logo-text.cl {
+  color: #ffffff;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.logo-text.ionos {
+  color: #FF6B00;
+  font-size: 1.4rem;
+  text-shadow: 0 0 20px rgba(255, 107, 0, 0.5);
+}
+
+.header-x {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(90deg, #ffffff, #FF6B00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 0.25rem;
+}
+
+.subtitle {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.65);
+  letter-spacing: 0.5px;
+}
+
+/* Wheel */
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.wheel-container {
+  filter: drop-shadow(0 8px 32px rgba(0, 0, 0, 0.5));
+}
+
+/* Override react-custom-roulette container size (default max is 445px) */
+.wheel-container > div {
+  width: 650px !important;
+  height: 650px !important;
+  max-width: 650px !important;
+  max-height: 650px !important;
+}
+
+/* Clip canvas to circle so overflowing text is hidden */
+.wheel-container > div canvas {
+  clip-path: circle(48.5%);
+}
+
+/* Spin button */
+.spin-button {
+  padding: 1rem 3.5rem;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #FF6B00, #FF8C00);
+  color: #ffffff;
+  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.5), 0 0 0 3px rgba(255, 107, 0, 0.2);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.15s;
+}
+
+.spin-button:hover:not(:disabled) {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 8px 28px rgba(255, 107, 0, 0.6), 0 0 0 4px rgba(255, 107, 0, 0.25);
+}
+
+.spin-button:active:not(:disabled) {
+  transform: translateY(0) scale(0.98);
+}
+
+.spin-button:disabled,
+.spin-button.spinning {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 1rem;
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal {
+  background: linear-gradient(145deg, #0a2a6e, #003D8F);
+  border: 2px solid rgba(255, 107, 0, 0.6);
+  border-radius: 24px;
+  padding: 2.5rem 2rem;
+  max-width: 380px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6), 0 0 40px rgba(255, 107, 0, 0.2);
+  animation: popIn 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.7); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+.modal-icon {
+  font-size: 3.5rem;
+  margin-bottom: 0.5rem;
+  animation: bounce 0.6s ease 0.3s both;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-10px); }
+}
+
+.modal-title {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.modal-subtitle {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  margin-bottom: 1rem;
+}
+
+.modal-prize {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #FF6B00;
+  background: rgba(255, 107, 0, 0.1);
+  border: 1px solid rgba(255, 107, 0, 0.3);
+  border-radius: 12px;
+  padding: 0.75rem 1.5rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.modal-note {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.modal-close {
+  padding: 0.75rem 2.5rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #FF6B00, #FF8C00);
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(255, 107, 0, 0.4);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.modal-close:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 107, 0, 0.5);
+}
